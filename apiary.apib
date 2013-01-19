@@ -1,0 +1,28 @@
+HOST: http://www.nasedochazka.cz/
+
+--- orgSchema ---
+---
+Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+---
+--
+Seznam středisek
+Služby pro načítání a úpravy organizačního schématu
+--
+Vrací lineární seznam všech středisek na které má přihlášený uživatel oprávnění.
+Kořen se pozná podle hodnoty "dominium" v položce type
+GET /resources/orgSchema/orgUnits
+< 200
+< Content-Type: application/json
+[
+  { 
+    id: 7,
+    name: "Firma",
+    -- odkaz na nadřízenou položku
+    parent: 6,
+    -- druh záznamu, možné hodnoty jsou dominium, firma, unit, container a team
+    type: "dominium",
+    -- příznak jestli má položka podřízené položky
+    children:true,
+    versionId: 111111
+  }
+] 
