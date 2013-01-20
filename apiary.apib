@@ -40,13 +40,17 @@ GET /unitFull?id={ident}&decDate={datumVerse}
 < 200
 < Content-Type: application/json, application/xml
 { 
-    createTaskId: "42456"
+    id: "42464"
+    unitId: "14"
+    name: "Vedení"
+    sName: "vedení"
+    state: "GRUB"
+    type: "Firma"
+    typeId: "202"
+    leaf: "0"
     exMasterPos: {
         name: ""
     }
-    expire: "3001-01-01T00:59:59+01:00"
-    id: "42464"
-    leaf: "0"
     masterPos: {
         id: "42467"
         maxCount: "1"
@@ -56,11 +60,15 @@ GET /unitFull?id={ident}&decDate={datumVerse}
         ssdxId: "1"
         unitId: "14"
 `   }
-    name: "Vedení"
-    sName: "vedení"
-    state: "GRUB"
     subUnits: {
-        createTaskId: "42456"
+        id: "42466"
+        unitId: "16"
+        name: "Ekonomika"
+        sName: "ekonom"
+        type: "Firma"
+        typeId: "202"
+        state: "GRUB"
+        leaf: "1"
         exMasterPos: {
             id: "42467"
             maxCount: "1"
@@ -70,30 +78,22 @@ GET /unitFull?id={ident}&decDate={datumVerse}
             ssdxId: "1"
             unitId: "14"
         }
-        expire: "3001-01-01T00:59:59+01:00"
-        id: "42466"
-        leaf: "1"
         masterPos: {
             name: ""
         }
-        name: "Ekonomika"
-        sName: "ekonom"
-        state: "GRUB"
+        superId: "14"
+        superName: "Vedení"
+        superSName: "vedení"
+        validFrom: "2013-01-01T00:00:00+01:00"
+        expire: "3001-01-01T00:59:59+01:00"
+        createTaskId: "42456"
     }
-    superId: "14"
-    superName: "Vedení"
-    superSName: "vedení"
-    type: "Firma"
-    typeId: "202"
-    unitId: "16"
-    validFrom: "2013-01-01T00:00:00+01:00"
     superId: "11"
     superName: "GOLDCARD, spol. s r. o."
     superSName: "GC"
-    type: "Firma"
-    typeId: "202"
-    unitId: "14"
     validFrom: "2013-01-01T00:00:00+01:00"
+    expire: "3001-01-01T00:59:59+01:00"
+    createTaskId: "42456"
 }
 
 Vrací úplný popis jednoho střediska a pro jeho výběr požívá query parametr.
