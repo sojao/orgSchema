@@ -1,4 +1,4 @@
-HOST: http://www.nasedochazka.cz/resources/
+HOST: http://www.nasedochazka.cz/resources
 
 --- orgSchema ---
 ---
@@ -6,13 +6,18 @@ Welcome to the our sample API documentation. All comments can be written in (sup
 ---
 --
 Seznam středisek
-Služby pro načítání a úpravy organizačního schématu
+Služby pro načítání a úpravy organizačního schématu.
+Společné parametry:
+-    id          - identifikátor objektu (ne jeho verse)
+-    decDatum    - datum podle kterého se vybere příslušná verse objektu
+-    owner       - identifikátor nadřízeného objektu (ne jeho verse)
 --
+
 Vrací lineární seznam všech středisek na které má přihlášený uživatel oprávnění.
 Kořen se pozná podle hodnoty "dominium" v položce type
-GET /orgSchema/orgUnits
+GET /orgSchema/orgUnits?decDate={datumVerse}
 < 200
-< Content-Type: application/json
+< Content-Type: application/json, application/xml
 [
   { 
     id: 7,
@@ -26,3 +31,171 @@ GET /orgSchema/orgUnits
     versionId: 111111
   }
 ] 
+
+Vrací úplný popis jednoho střediska a pro jeho výběr požívá query parametr.
+Tato varianta je tady kvůli komponetě select v dijit, která bohužel používá tento tvar.
+GET /unitFull?id={ident}&decDate={datumVerse}
+< 200
+< Content-Type: application/json, application/xml
+{ 
+    createTaskId: "42456"
+    exMasterPos: {
+        name: ""
+    }
+    expire: "3001-01-01T00:59:59+01:00"
+    id: "42464"
+    leaf: "0"
+    masterPos: {
+        id: "42467"
+        maxCount: "1"
+        minCount: "1"
+        name: "vedoucí"
+        optimalCount: "1"
+        ssdxId: "1"
+        unitId: "14"
+`   }
+    name: "Vedení"
+    sName: "vedení"
+    state: "GRUB"
+    subUnits: {
+        createTaskId: "42456"
+        exMasterPos: {
+            id: "42467"
+            maxCount: "1"
+            minCount: "1"
+            name: "vedoucí"
+            optimalCount: "1"
+            ssdxId: "1"
+            unitId: "14"
+        }
+        expire: "3001-01-01T00:59:59+01:00"
+        id: "42466"
+        leaf: "1"
+        masterPos: {
+            name: ""
+        }
+        name: "Ekonomika"
+        sName: "ekonom"
+        state: "GRUB"
+    }
+    superId: "14"
+    superName: "Vedení"
+    superSName: "vedení"
+    type: "Firma"
+    typeId: "202"
+    unitId: "16"
+    validFrom: "2013-01-01T00:00:00+01:00"
+    superId: "11"
+    superName: "GOLDCARD, spol. s r. o."
+    superSName: "GC"
+    type: "Firma"
+    typeId: "202"
+    unitId: "14"
+    validFrom: "2013-01-01T00:00:00+01:00"
+}
+
+Vrací úplný popis jednoho střediska a pro jeho výběr požívá query parametr.
+GET /unitFull/{id}?decDate={datumVerse}
+< 200
+< Content-Type: application/json, application/xml
+{ 
+    id: 7,
+    name: "Firma",
+    -- odkaz na nadřízenou položku
+    parent: 6,
+    -- druh záznamu, možné hodnoty jsou dominium, firma, unit, container a team
+    type: "dominium",
+    -- příznak jestli má položka podřízené položky
+    children:true,
+    versionId: 111111
+}
+
+POST /unitFull
+> Content-Type: application/json
+{ "product":"1AB23ORM", "quantity": 2 }
+< 201
+< Content-Type: application/json
+{ "status": "created", "url": "/shopping-cart/2" }
+
+PUT /unitFull/{id}
+> Content-Type: application/json
+{ "product":"1AB23ORM", "quantity": 2 }
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+DELETE /unitFull/{id}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }newfile
+
+GET /unitDetail/{id}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+PUT /unitDetail/{id}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+GET /unitAddress/{owner}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+POST /unitAddress/{owner}
+< 200
+< Content-Type: application/json, application/xml
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+PUT /unitAddress/{owner}/{ident}
+< 200
+< Content-Type: application/json, application/xml
+
+DELETE /unitAddress/{owner}/{ident}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+GET /unitPositions/{owner}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+POST /unitPositions/{owner}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+PUT /unitPositions/{owner}/{ident}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+DELETE /unitPositions/{owner}/{ident}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+GET /unitFiles/{owner}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+DELETE /unitFiles/{owner}/{ident}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+GET /unitCalendars/{owner}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
+
+POST /unitCalendars/{owner}
+< 200
+< Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
