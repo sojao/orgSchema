@@ -13,7 +13,7 @@ Společné parametry:
 *    owner       identifikátor nadřízeného objektu (ne jeho verse)
 --
 
--- Střediska --
+-- Středisko --
 
 Vrací lineární seznam všech středisek na které má přihlášený uživatel oprávnění.
 Kořen se pozná podle hodnoty "dominium" v položce type
@@ -141,6 +141,8 @@ PUT /unitDetail/{id}
 < Content-Type: application/json, application/xml
 { "status": "created", "url": "/shopping-cart/2" }
 
+-- Adresy střediska --
+
 GET /unitAddress/{owner}
 < 200
 < Content-Type: application/json, application/xml
@@ -156,11 +158,14 @@ POST /unitAddress/{owner}
 PUT /unitAddress/{owner}/{ident}
 < 200
 < Content-Type: application/json, application/xml
+{ "status": "created", "url": "/shopping-cart/2" }
 
 DELETE /unitAddress/{owner}/{ident}
 < 200
 < Content-Type: application/json, application/xml
 { "status": "created", "url": "/shopping-cart/2" }
+
+-- Pracovní pozice střediska --
 
 GET /unitPositions/{owner}
 < 200
@@ -182,6 +187,8 @@ DELETE /unitPositions/{owner}/{ident}
 < Content-Type: application/json, application/xml
 { "status": "created", "url": "/shopping-cart/2" }
 
+-- Dokumenty střediska --
+
 GET /unitFiles/{owner}
 < 200
 < Content-Type: application/json, application/xml
@@ -191,6 +198,8 @@ DELETE /unitFiles/{owner}/{ident}
 < 200
 < Content-Type: application/json, application/xml
 { "status": "created", "url": "/shopping-cart/2" }
+
+-- Pracovní kalendáře střediska --
 
 GET /unitCalendars/{owner}
 < 200
